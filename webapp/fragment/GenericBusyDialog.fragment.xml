@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<BusyDialog customIconRotationSpeed="0" customIconDensityAware="false" class="hapBusyIndicator"
+		customIcon="{appView>/busyImageSource}"
+	>
+		<customData>
+			<core:CustomData key="customBusyIndicator" value="true" writeToDom="true"/>
+		</customData>
+	</BusyDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,35 @@
+.smod-nav-manager {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.smod-nav-manager-side-content {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-direction: normal;
+-webkit-box-orient: vertical;
+-webkit-flex-direction: column;
+-ms-flex-direction: column;
+flex-direction: column;
+}
+
+.smod-nav-manager-right-content {
+  position: relative;
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.smod-nav-manager-main-content {
+  display: inline-block;
+  height: 100%;
+}
+
+.smod-nav-manager-top-content{
+  width: 100%;
+}

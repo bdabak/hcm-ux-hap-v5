@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+.circle-stat-container,
+.circle-stat-container * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+.circle-stat-container{
+  height: 0;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.circle-stat-container-row {
+  background-color: transparent;
+}
+
+.circle-stat-container .circle-stat-container-row{
+  display: none;
+}
+
+.circle-stat-container.active{
+  height: 60px;
+}
+
+.circle-stat-container.active .circle-stat-container-row{
+  display: -webkit-box;
+  box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  background-color: transparent;
+}
+
+.open-stats{
+  visibility: visible;
+  position: absolute;
+  position-attachment: fixed;
+  right:0;
+  top:5px;
+  z-index: 2;
+  width: 30px;
+  display: flex;
+  align-items: center ;
+  justify-content: center ;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background-color: #f1f1f1;
+  }
+
+.open-stats .open-stats-icon{
+  font-family: "Material Symbols Rounded" !important;
+  font-size: 24px;
+  /* color: white; */
+  color: #6f6e6e;
+}
+
+.circle-stat-container.active .open-stats{
+  top: -100px;
+  visibility: hidden;
+}
+
+.circle-stat-container-col {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
+  position: relative;
+}
+.circle-stat-container-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+}
+
+.circle-stat-container-grid .circle-stat-main {
+  justify-self:center;
+  position:relative;
+}
+
+.circle-stat-main {
+  display: flex;
+  column-gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+  height: 60px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+}
+
+.circle-stat {
+  width: 40px;
+  height: 40px;
+}
+.circle-stat-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  font-size: 0.6rem;
+  font-weight: 400;
+  padding: 0 0.35rem;
+  line-height: 0.95rem;
+  background-color: #2b3947;
+  color: #ffffff;
+  border-radius: 3px;
+  border: 1px solid #232b38;
+}
+.circle-stat-unit {
+  font-size: 0.8rem;
+}
+
+.circle-stat-container-grid .circle-stat-main:not(:last-child)::after{
+  position: absolute;
+  top: calc(50% - 10px);
+  left: calc(50% + 36px / 2);
+  transition-property: all;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  display: block;
+  height: 1px;
+  content: '';
+  background: #d3d4d5;
+  z-index: 1;
+  width: calc(100% - 36px);
+}
+
+.close-icon{
+  position: absolute;
+  right: 0.5rem;
+  top: calc(50% - 15px);
+  font-family: "Material Symbols Rounded" !important;
+  font-size: 24px;
+  color: #6f6e6e;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.close-icon:hover{
+  color: #2b3947;
+}

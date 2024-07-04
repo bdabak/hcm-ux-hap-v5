@@ -1,0 +1,34 @@
+.smod-info-stats {
+  display: flex;
+  align-items: baseline;
+  min-height: 100px;
+  width: 100%;
+}
+
+.smod-info-stats-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  display: table;
+}
+
+.smod-info-stats-table tr:nth-child(odd) {
+  background-color: transparent;
+}
+
+.smod-info-stats-table tr:nth-child(even) {
+  background-color: #2b3947;
+}
+
+.smod-info-stats-table tr {
+  height: 25px;
+}
+
+.smod-info-stats-table td {
+  font-size: 0.7rem !important;
+  padding: 3px;
+}
+
+.smod-info-stats-table-row-label {
+  font-weight: bold;
+}

@@ -1,0 +1,128 @@
+<mvc:View
+    controllerName="hcm.ux.hapv5.controller.FormDetails"
+    xmlns="sap.m"
+    xmlns:smod="hcm.ux.hapv5.controls"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+    <smod:NavManager visible="{formDetailsModel>/headerVisible}" busy="{formDetailsModel>/busy}">
+        <smod:sideContent>
+            <smod:SideBar
+                select=".onNavigateToPage"
+                links="{formDetailsModel>/navigationData}"
+                expandedLogo="/sap/opu/odata/sap/ZHCM_UX_HAP_SRV/MimeInfoSet('%2FSAP%2FPublic%2FCustomImages%2Faltime_logo.png')/$value"
+                collapsedLogo="/sap/opu/odata/sap/ZHCM_UX_HAP_SRV/MimeInfoSet('%2FSAP%2FPublic%2FCustomImages%2Fbrand_logo_collapsed.png')/$value"
+            >
+                <smod:header>
+                    <smod:TabContainer>
+                        <smod:tabs>
+                            <smod:Tab title="Çalışan" />
+                            <smod:Tab title="Durum" />
+                            <smod:Tab title="1. Yönetici" />
+                            <smod:Tab title="2. Yönetici" />
+                        </smod:tabs>
+                        <smod:contents>
+                            <smod:TabContent>
+                                <smod:Profile
+                                    src="{formDetailsModel>/sidebarData/appeeInfo/ImageSource}"
+                                    title="{formDetailsModel>/sidebarData/appeeInfo/Title}"
+                                    info1="{formDetailsModel>/sidebarData/appeeInfo/Line1}"
+                                    info2="{formDetailsModel>/sidebarData/appeeInfo/Line2}"
+                                    press=".onEmployeeInfo"
+                                    showDetail="true"
+                                    cd:EmployeeId="{formDetailsModel>/sidebarData/appeeInfo/Id}"
+                                />
+                            </smod:TabContent>
+                            <smod:TabContent>
+                                <smod:InfoStat
+                                    info="{formDetailsModel>/sidebarData/statusInfo}"
+                                />
+                            </smod:TabContent>
+                            <smod:TabContent>
+                                <smod:Profile
+                                    src="{formDetailsModel>/sidebarData/apper1stInfo/ImageSource}"
+                                    title="{formDetailsModel>/sidebarData/apper1stInfo/Title}"
+                                    info1="{formDetailsModel>/sidebarData/apper1stInfo/Line1}"
+                                    info2="{formDetailsModel>/sidebarData/apper1stInfo/Line2}"
+                                />
+                            </smod:TabContent>
+                            <smod:TabContent>
+                                <smod:Profile
+                                    src="{formDetailsModel>/sidebarData/apper2ndInfo/ImageSource}"
+                                    title="{formDetailsModel>/sidebarData/apper2ndInfo/Title}"
+                                    info1="{formDetailsModel>/sidebarData/apper2ndInfo/Line1}"
+                                    info2="{formDetailsModel>/sidebarData/apper2ndInfo/Line2}"
+                                />
+                            </smod:TabContent>
+                        </smod:contents>
+                    </smod:TabContainer>
+                </smod:header>
+                <smod:links>
+                    <smod:SideBarNavLink
+                        text="{formDetailsModel>Name}"
+                        icon="{formDetailsModel>Icon}"
+                        key="{formDetailsModel>Index}"
+                        selected="{formDetailsModel>Selected}"
+                    />
+                </smod:links>
+                <smod:footer>
+                    <smod:Carousel
+                        items="{path:'formDetailsModel>/sidebarData/footerData/Pages', templateShareable: false}"
+                        visible="{= ${formDetailsModel>/sidebarData/footerData/Pages} &amp;&amp; ${formDetailsModel>/sidebarData/footerData/Pages}.length > 0}"
+                    >
+                        <smod:CarouselItem>
+                            <VBox
+                                alignItems="Center"
+                                justifyContent="Center"
+                                width="100%"
+                                height="100%"
+                                class="flexBoxSmallGap"
+                            >
+                                <items>
+                                    <Label text="{formDetailsModel>Title}" />
+                                    <HBox width="100%"
+                                        items="{path:'formDetailsModel>Items', templateShareable: false}"
+                                        justifyContent="Center" alignContent="Center" alignItems="Center" class="flexBoxSmallGap"
+                                     >
+                                        <items>
+                                            <smod:IndicatorCard label="{formDetailsModel>Name}" value="{formDetailsModel>Value}" />
+                                        </items>
+                                    </HBox>
+                                </items>
+                            </VBox>
+                        </smod:CarouselItem>
+                        <!-- <smod:CarouselItem> <VBox alignItems="Center" justifyContent="Center"><Label text="Label 2" /> <Text text="Text 2"/></VBox></smod:CarouselItem>
+                        <smod:CarouselItem> <VBox alignItems="Center" justifyContent="Center"><Label text="Label 3" /> <Text text="Text 3"/></VBox></smod:CarouselItem> -->
+                    </smod:Carousel>
+                </smod:footer>
+            </smod:SideBar>
+        </smod:sideContent>
+        <smod:topContent>
+             <smod:CircleStatContainer
+                        stats="{formDetailsModel>/formData/DocProgress}"
+                        visible="{= ${formDetailsModel>/formData/DocProgress}.length > 1 }"
+                    >
+                        <smod:CircleStat
+                            value="{path:'formDetailsModel>Percentage', type:'sap.ui.model.odata.type.Decimal'}"
+                            size="40"
+                            label="{formDetailsModel>Name}"
+                        />
+                    </smod:CircleStatContainer>
+        </smod:topContent>
+        <smod:mainContent>
+            <Page
+                showFooter="true"
+                showHeader="false"
+                floatingFooter="false"
+                enableScrolling="false"
+            >
+                <content>
+                    <NavContainer id="idPageNavigationContainer" />
+                </content>
+                <footer>
+                    <Toolbar id="idDetailPageToolbar" />
+                </footer>
+            </Page>
+        </smod:mainContent>
+    </smod:NavManager>
+</mvc:View>

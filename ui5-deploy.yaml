@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: hcm.ux.hapv5
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: ""
+          url: http://istttks0161v:8000
+          client: "300"
+        app:
+          name: ZHCM_UX_HAPV5
+          description: TTAS Performans
+          package: ZHR_UX
+          transport: I32K900005

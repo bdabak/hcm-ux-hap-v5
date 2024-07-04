@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:smod="com.smod.ux.lib.controls">
+    <Dialog id="newObjectiveWizardDialog" showHeader="false" verticalScrolling="false" contentHeight="90%" contentWidth="90%" class="hapDialog" draggable="true">
+        <f:DynamicPage stickySubheaderProvider="newObjectiveWizard" toggleHeaderOnTitleClick="false" class="sapUiNoContentPadding" showFooter="true">
+            <f:title>
+                <f:DynamicPageTitle>
+                    <f:heading>
+                        <Title text="{i18n>newObjectiveViaWizard}"/>
+                    </f:heading>
+                </f:DynamicPageTitle>
+            </f:title>
+            <f:content>
+                <Wizard id="newObjectiveWizard" class="hapObjectiveWizard" showNextButton="false" stepActivate=".onObjectiveWizardStepChanged">
+                    <WizardStep id="dependentObjectiveSelection" title="{i18n>dependentObjectiveSelection}" validated="true">
+                        <smod:HapMessageStrip class="sapUiSmallMarginBeginEnd sapUiSmallMarginBottom" htmlContent="{i18n>selectDependentObjectiveHint}" messageType="Warning" showIcon="true" />
+                        <core:Fragment fragmentName="hcm.ux.hapv3.fragment.NewObjectiveByWizardDependentCatalog" type="XML" />
+                    </WizardStep>
+                    <WizardStep id="newObjectiveInformation" validated="false" title="{i18n>newObjectiveDetails}">
+                        <smod:HapMessageStrip class="sapUiSmallMarginBeginEnd sapUiSmallMarginBottom" htmlContent="{i18n>objectiveDetailsHint}" messageType="Warning" showIcon="true" />
+
+                        <core:Fragment fragmentName="hcm.ux.hapv3.fragment.NewObjectiveByWizardDetails" type="XML" />
+                        <Toolbar style="Clear">
+                            <ToolbarSpacer/>
+                            <Button text="{i18n>nextStepButton}" type="Emphasized" press=".onObjectiveWizardGoReview" />
+                        </Toolbar>
+                    </WizardStep>
+                    <WizardStep id="reviewAndFinalise" validated="false" title="{i18n>addNewObjectiveStep}">
+                        <smod:HapMessageStrip class="sapUiSmallMarginBeginEnd sapUiSmallMarginBottom" htmlContent="{i18n>reviewObjectiveHint}" messageType="Warning" showIcon="true" />
+
+
+                        <core:Fragment fragmentName="hcm.ux.hapv3.fragment.NewObjectiveByWizardReview" type="XML" />
+                        <Toolbar style="Clear">
+                            <ToolbarSpacer/>
+                            <Button text="{i18n>prevStepButton}" type="Emphasized" press=".onObjectiveWizardBackToObjectDetails" />
+                            <Button icon="sap-icon://add" text="{i18n>finalizeButton}" type="Accept" press=".onObjectiveWizardFinalize" />
+                        </Toolbar>
+
+                    </WizardStep>
+                </Wizard>
+            </f:content>
+
+            <f:footer>
+                <OverflowToolbar>
+                    <Button id="objectiveByWizardMessagesButton" icon="sap-icon://error" text="{= ${path:'formDetailsModel>errorList'}.length }" type="Reject" press=".onOpenObjectiveWizardMessagePopover" visible="{= ${path:'formDetailsModel>errorList'} &amp;&amp; ${path:'formDetailsModel>errorList'}.length > 0 }" />
+                    <ToolbarSpacer/>
+                    <Button text="{i18n>cancelButton}" type="Reject" press=".onObjectiveWizardCancelled"/>
+                </OverflowToolbar>
+            </f:footer>
+        </f:DynamicPage>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,76 @@
+.smod-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-direction: row;
+  gap: 0.5rem;
+  overflow: hidden;
+  width: 100%;
+  margin: 0.25rem !important;
+}
+
+.smod-profile-avatar {
+  display: block;
+}
+
+.smod-profile-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.2rem;
+  font-size: 0.75rem;
+  overflow: hidden;
+}
+
+.smod-profile-content-title {
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.smod-profile-content-info {
+  font-weight: 300;
+  overflow: hidden;
+}
+
+.smod-profile-content-info-icon {
+    font-family: "Material Symbols Rounded" !important;
+    font-size: 36px;
+    cursor: pointer;
+    position: relative;
+    animation: heartBeat 3.5s;
+    color: #cccccc;
+    transition: color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.smod-profile-content-info-icon:hover {
+    color: white;
+}
+
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  5% {
+    transform: scale(1.1);
+  }
+  10% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes stop {
+  to {
+    transform: scale(1);
+  }
+}

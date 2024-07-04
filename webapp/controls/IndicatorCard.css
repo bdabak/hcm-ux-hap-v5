@@ -1,0 +1,41 @@
+.smod-indicator-card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 120px;
+    height: 55px;
+    min-width: 70px;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: 0.35rem;
+    font-family: "Poppins", sans-serif;
+}
+
+.smod-indicator-card-body{
+    padding: 0.2rem;
+    text-align: center !important;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: space-evenly;
+    width:100%;
+    height:100%;
+}
+
+.smod-indicator-card-value{
+    background-image: linear-gradient(195deg, #ec407a, #d81b60);
+    color: #e91e63 !important;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+    font-size: 0.85rem !important;
+}
+
+.smod-indicator-card-label{
+    font-weight: 700 !important;
+    font-size: 0.55rem !important;
+}

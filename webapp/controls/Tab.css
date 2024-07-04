@@ -1,0 +1,45 @@
+.smod-tab-container {
+    display: block;
+    overflow: hidden;
+    color: #fff;
+  }
+  
+  .smod-tabs {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .smod-tab {
+    border-bottom: 3px solid #ccc !important;
+    padding: 8px 8px !important;
+    color: #fff;
+    font-size: 0.7rem;
+    flex: 1 0;
+    cursor: pointer;
+    transition: background-color 0.25s ease-in-out;
+    width: 100%;
+    text-align:center;
+  }
+  
+  .smod-tab.active {
+    background-color: rgb(206 10 18 / 50%);
+    border-color: #ce0a12 !important;
+  }
+  
+  .smod-tab:not(.active):hover {
+    background-color: #00548a !important;
+  }
+  
+  .smod-tab-content {
+    height: 100px;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    width: 100%;
+    background-color: #354a5f;
+  }
+  
+  .smod-tab-content.active {
+    display: flex;
+    opacity: 1;
+  }
