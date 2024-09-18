@@ -13,12 +13,14 @@ builder:
     - name: deploy-to-abap
       afterTask: generateCachebusterInfo
       configuration:
+        ignoreCertError: true
         target:
-          destination: ""
-          url: http://istttks0161v:8000
+          url: https://idgwv.thy.com
           client: "300"
         app:
           name: ZHCM_UX_HAPV5
           description: TTAS Performans
           package: ZHR_UX
-          transport: I32K900005
+          transport: D28K905646
+        exclude:
+          - /test/

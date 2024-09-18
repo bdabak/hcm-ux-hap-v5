@@ -1,14 +1,14 @@
-sap.ui.define(["sap/ui/core/Control"], function (Control) {
-  "use strict";
+sap.ui.define(
+  ["sap/ui/core/Control", "sap/ui/core/IconPool"],
+  function (Control, IconPool) {
+    "use strict";
 
-  return Control.extend(
-    "hcm.ux.hapv5.controls.SideBarNavLink",
-    {
+    return Control.extend("hcm.ux.hapv5.controls.SideBarNavLink", {
       metadata: {
         properties: {
-          key:{
+          key: {
             type: "string",
-            bindable: true
+            bindable: true,
           },
           text: {
             type: "string",
@@ -18,11 +18,11 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
             type: "string",
             bindable: true,
           },
-          selected:{
+          selected: {
             type: "boolean",
             bindable: true,
-            defaultValue: false
-          }
+            defaultValue: false,
+          },
         },
         aggregations: {
           items: {
@@ -35,12 +35,15 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
           press: {},
         },
       },
-      init: function () {},
+      init: function () {
+      },
       renderer: function (oRM, oControl) {
         const aItems = oControl.getItems() || [];
         const sText = oControl.getText() || "";
         const sIcon = oControl.getIcon() || "";
         const bSelected = oControl.getSelected() || false;
+        const bSapUiIcon = sIcon.includes("sap-icon://") || false;
+        const sIconContent = IconPool.getIconInfo(sIcon)?.content || sIcon;
         oRM
           //--Side filter link
           .openStart("li", oControl)
@@ -56,8 +59,10 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
 
             .openStart("span") //--Logo icon
             .class("linkIcon")
+            .class(bSapUiIcon ? "sapUiIcon" : "customUiIcon")
+            .attr("data-sap-ui-icon-content", sIconContent)
             .openEnd()
-            .text(sIcon)
+            .text(bSapUiIcon ? null : sIcon)
             .close("span") //-- Logo icon
 
             .openStart("span") //--Logo title
@@ -94,7 +99,7 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
         } else {
           oRM
             .openStart("div")
-            .class("smod-sb-iocn-link")
+            .class("smod-sb-icon-link")
             .openEnd()
 
             //--Item text & logo
@@ -104,8 +109,10 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
 
             .openStart("span") //--Logo icon
             .class("linkIcon")
+            .class(bSapUiIcon ? "sapUiIcon" : "customUiIcon")
+            .attr("data-sap-ui-icon-content", sIconContent)
             .openEnd()
-            .text(sLogo)
+            .text(bSapUiIcon ? null : sIcon)
             .close("span") //-- Logo icon
 
             .openStart("span") //--Logo title
@@ -120,6 +127,7 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
             //--Chevron
             .openStart("span")
             .class("linkIcon")
+            .class("customUiIcon")
             .class("arrowIcon")
             .openEnd()
             .text("expand_more")
@@ -144,8 +152,8 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
             .class("menuLink")
             .openEnd()
             .text(sText)
-            .close("span")
-            //--Popover header
+            .close("span");
+          //--Popover header
 
           //--Item text
 
@@ -159,23 +167,23 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
         oRM.close("li");
         //--Side filter link
       },
-      ontap: function(e){
+      ontap: function (e) {
         e.preventDefault();
         e.stopPropagation();
-       
-        if(this.$().hasClass("menuLink")){
+
+        if (this.$().hasClass("menuLink")) {
           this.$().toggleClass("showMenu");
         }
 
-        if(this.$().hasClass("directLink") && !this.$().hasClass("selected")){
+        if (this.$().hasClass("directLink") && !this.$().hasClass("selected")) {
           $(".selectableItem").removeClass("selected");
           this.getParent()?.fireSelect({
-            selectedItem: this
+            selectedItem: this,
           });
           this.$().addClass("selected");
           this.setProperty("selected", true, true);
         }
-      }
-    }
-  );
-});
+      },
+    });
+  }
+);

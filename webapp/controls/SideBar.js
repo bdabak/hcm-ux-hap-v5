@@ -1,4 +1,4 @@
-sap.ui.define(["sap/ui/core/Control"], function (Control) {
+sap.ui.define(["sap/ui/core/Control","sap/ui/Device"], function (Control,Device) {
   "use strict";
 
   return Control.extend("hcm.ux.hapv5.controls.SideBar", {
@@ -44,6 +44,11 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
     init: function () {
       var sLibraryPath = jQuery.sap.getModulePath("hcm.ux.hapv5"); //get the server location of the ui library
       jQuery.sap.includeStyleSheet(sLibraryPath + "/controls/SideBar.css");
+      Device.media.attachHandler(
+        this.handleResizeSideBar,
+        this,
+        sap.ui.Device.media.RANGESETS.SAP_STANDARD
+      );
     },
     renderer: function (oRM, oControl) {
       const aLinks = oControl.getLinks() || [];
@@ -117,9 +122,9 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
       aLinks.forEach((oLink) => {
         oRM.renderControl(oLink);
       });
-      oRM
-        .openStart("li")
-        .openEnd()
+      
+      oRM.close("ul")
+        //--Nav links
         //--Footer
         .openStart("div")
         .class("smod-sb-footer")
@@ -127,18 +132,27 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
         .renderControl(oControl.getFooter())
         .close("div")
         //--Footer
-        .close("li")
-        .close("ul")
-        //--Nav links
-
         .close("div"); //--Side filter main
     },
     ontap: function (e) {
       e.preventDefault();
       e.stopPropagation();
-      if ($(e.target).hasClass("toggleMenu")) {
+      if ($(e.target).hasClass("toggleMenu") && !Device.system.phone) {
         this.$().toggleClass("close");
       }
     },
+    handleResizeSideBar: function (oEvent) {
+      switch (oEvent.name) {
+        case "Phone":
+          this.$().addClass("close");
+          break;
+        case "Tablet":
+          this.$().addClass("close");
+          break;
+        case "Desktop":
+          this.$().removeClass("close");
+          break;
+      }
+    }
   });
 });
